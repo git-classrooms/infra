@@ -1,0 +1,41 @@
+vaultwarden:
+  fullnameOverride: "vaultwarden"
+  domain: "https://vault.git-classrooms.dev"
+
+  image:
+    tag: "1.32.6"
+
+  ingress:
+    enabled: true
+    class: "traefik"
+    hostname: vault.git-classrooms.dev
+    additionalAnnotations:
+      kubernetes.io/ingress.class: traefik
+
+  serviceAccount:
+    create: true
+    name: "vaultwarden-svc"
+
+  storage:
+    data:
+      name: "vaultwarden-data"
+      size: "2Gi"
+      class: "nfs-client"
+      accessMode: "ReadWriteOnce"
+
+    attachments:
+      name: "vaultwarden-files"
+      size: "2Gi"
+      class: "nfs-client"
+      accessMode: "ReadWriteOnce"
+
+  # smtp:
+  #   host: mail.smtp2go.com
+  #   port: 2525
+  #   from: vault@git-classrooms.dev
+  #   fromName: "Vaultwarden (GitClassrooms)"
+  #   security: "force_tls"
+
+  pushNotifications:
+    relayUri: https://push.bitwarden.com
+    identityUri: https://identity.bitwarden.com
