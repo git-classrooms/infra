@@ -1,0 +1,12 @@
+keys:
+  - &primary age120smthme2cve6kfak2gpnle5nqzzamnj2rmpw9gmr9dwyyvnfahq0fq454
+
+creation_rules:
+  # Vaultwarden kustomize
+  - path_regex: "vaultwarden/(.*)secret.yaml"
+    unencrypted_regex: "^(apiVersion|metadata|kind|type)$"
+    age: *primary
+
+  # Vaultwarden helm
+  - path_regex: "vaultwarden/secrets/(.*).yaml"
+    age: *primary
