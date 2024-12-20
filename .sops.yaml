@@ -10,3 +10,7 @@ creation_rules:
   # Vaultwarden helm
   - path_regex: "vaultwarden/secrets/(.*).yaml"
     age: *primary
+
+  # Gitlab docker compose
+  - path_regex: "gitlab/.env"
+    age: *primary
