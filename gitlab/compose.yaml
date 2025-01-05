@@ -34,23 +34,23 @@ volumes:
     driver_opts:
       type: "nfs"
       o: "addr=192.168.10.200,nolock,soft,rw"
-      device: ":/volume1/srv01-nfs/docker/gitlab/runner"
+      device: ":/volume1/gc01-nfs/docker/gitlab/runner"
 
   gitlab-config:
     driver: local
     driver_opts:
       type: nfs
       o: "addr=192.168.10.200,nolock,soft,rw"
-      device: ":/volume1/srv01-nfs/docker/gitlab/config"
+      device: ":/volume1/gc01-nfs/docker/gitlab/config"
   gitlab-logs:
     driver: local
     driver_opts:
       type: nfs
       o: "addr=192.168.10.200,nolock,soft,rw"
-      device: ":/volume1/srv01-nfs/docker/gitlab/logs"
+      device: ":/volume1/gc01-nfs/docker/gitlab/logs"
   gitlab-data:
     driver: local
     driver_opts:
       type: nfs
       o: "addr=192.168.10.200,nolock,soft,rw"
-      device: ":/volume1/srv01-nfs/docker/gitlab/data"
+      device: ":/volume1/gc01-nfs/docker/gitlab/data"
