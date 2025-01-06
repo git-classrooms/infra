@@ -29,12 +29,12 @@ vaultwarden:
       class: "nfs-client"
       accessMode: "ReadWriteOnce"
 
-  # smtp:
-  #   host: mail.smtp2go.com
-  #   port: 2525
-  #   from: vault@git-classrooms.dev
-  #   fromName: "Vaultwarden (GitClassrooms)"
-  #   security: "force_tls"
+  smtp:
+    host: mail.smtp2go.com
+    port: 2525
+    from: vault@git-classrooms.dev
+    fromName: "Vaultwarden (GitClassrooms)"
+    security: "force_tls"
 
   pushNotifications:
     relayUri: https://push.bitwarden.com
