@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pgadmin4-pvc
 spec:
+  storageClassName: nfs-client
   accessModes:
     - ReadWriteOnce
   resources:
