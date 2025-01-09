@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "GitClassrooms",
+      "Group": "Staging",
+      "Port": 5432,
+      "Username": "postgres",
+      "Host": "postgres.gc-staging.svc.cluster.local.",
+      "SSLMode": "prefer",
+      "MaintenanceDB": "postgres"
+    }
+  }
+}

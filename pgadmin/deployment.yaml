@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin4
+spec:
+  selector:
+    matchLabels:
+      app: pgadmin4
+  template:
+    metadata:
+      labels:
+        app: pgadmin4
+    spec:
+      containers:
+        - name: pgadmin4
+          image: dpage/pgadmin4:8.14
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: http
+              path: /misc/ping
+              scheme: HTTP
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 15
+          readinessProbe:
+            httpGet:
+              port: http
+              path: /misc/ping
+              scheme: HTTP
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 60
+            successThreshold: 1
+            timeoutSeconds: 15
+          envFrom:
+            - configMapRef:
+                name: pgadmin4-config
+            - secretRef:
+                name: pgadmin4-secret
+          volumeMounts:
+            - name: pgadmin4-data
+              mountPath: /var/lib/pgadmin
+            - name: definitions
+              mountPath: /pgadmin4/servers.json
+              subPath: servers.json
+      securityContext:
+        fsGroup: 5050
+        runAsGroup: 5050
+        runAsUser: 5050
+      volumes:
+        - name: pgadmin4-data
+          persistentVolumeClaim:
+            claimName: pgadmin4-pvc
+        - name: definitions
+          configMap:
+            name: pgadmin4-servers-config
+            items:
+              - key: servers.json
+                path: servers.json

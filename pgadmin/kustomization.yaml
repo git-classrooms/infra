@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - includeSelectors: true
+    pairs:
+      environment: staging
+
+resources:
+  - config.yaml
+  - deployment.yaml
+  - service.yaml
+  - pvc.yaml
+  - ingress.yaml
+
+configMapGenerator:
+  - name: pgadmin4-servers-config
+    files:
+      - servers.json
+
+generators:
+  - ./secret-generator.yaml
