@@ -19,3 +19,7 @@ creation_rules:
   # Gitlab local docker compose
   - path_regex: "gitlab-local/.env"
     age: *local
+
+  # Postges helm
+  - path_regex: "postgresql/secrets/(.*).yaml"
+    age: *primary
